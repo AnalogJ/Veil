@@ -47,8 +47,16 @@
         var pki = forge.pki;
 
         $('#private_button').click(function(){
-            var pem = $('#private_key').text();
+
+            var pem = $('#private_key').val();
+            console.log(pem)
+            try{
             var privateKey = pki.privateKeyFromPem(pem);
+            }
+            catch(ex)
+                {
+                    forge.log.error('test', ex);
+                }
             console.log('private key', privateKey);
 
         });
@@ -57,44 +65,3 @@
 
 
 </script>
-
-<div class="nav"><a href="index.html">Forge Tests</a> / Common</div>
-
-<div class="header">
-    <h1>Common Tests</h1>
-</div>
-
-<div class="content">
-
-    <fieldset class="section">
-        <ul>
-            <li>Test various Forge components.</li>
-            <li>See JavaScript console for more detailed output.</li>
-        </ul>
-    </fieldset>
-
-    <fieldset class="section">
-        <legend>Control</legend>
-        <button id="start">Start</button>
-        <button id="reset">Reset</button>
-        <br/>
-        <input id="scroll" type="checkbox" />Scroll Tests
-        <br/>
-        <button id="keygen">Generate RSA key pair</button>
-        <button id="certgen">Generate RSA certificate</button>
-        <input id="bits" value="1024"/>bits
-    </fieldset>
-
-    <fieldset class="section">
-        <legend>Progress</legend>
-        Status: <span id="status">?</span><br/>
-        Pass: <span id="pass">?</span>/<span id="total">?</span><br/>
-        Fail: <span id="fail">?</span>
-    </fieldset>
-
-    <fieldset class="section">
-        <legend>Tests</legend>
-        <div id="tests"></div>
-    </fieldset>
-
-</div>

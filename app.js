@@ -9,6 +9,7 @@ var user = require('./routes/user');
 var http = require('http');
 var path = require('path');
 var engine = require('ejs-locals');
+var lessMiddleware = require('less-middleware');
 
 var app = express();
 app.engine('ejs', engine);
@@ -23,7 +24,15 @@ app.use(express.methodOverride());
 app.use(express.cookieParser('your secret here'));
 app.use(express.session());
 app.use(app.router);
-app.use(require('less-middleware')({ src: __dirname + '/public' }));
+
+//bootstrap-less configuration.
+var bootstrapPath = path.join(__dirname, 'public', 'lib', 'bootstrap-theme-cirrus');
+app.use('/img', express.static(path.join(bootstrapPath, 'img')));
+app.use(lessMiddleware({
+    src: __dirname + '/public',
+    paths  : [path.join(bootstrapPath, 'css')],
+    compress: true
+}));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // development only

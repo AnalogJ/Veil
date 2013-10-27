@@ -12,6 +12,21 @@ Ideas
 - Should show you the strength of any passphrase that is entered. 
 - Should allow users to add passphrases to any certificate they upload to dropbox
 - Should use dropbox datastore with limited permisions
+- Should be accessable as a single page offline application
+- Passphrases are never decrypted by default, they must be decrypted on demand.
+- Detect when the application has gone offline, and disable changing passphrases, only decryption.
+
+Additional Features
+====
+
+- Use a dropzone to allow users to drag and drop ssh keys
+- Add tagging so that users can easily find their keys
+- Fulltext search in javascreipt
+- Use x-editable for inline updating.
+- Progress bar when decrypting and encrypting data.
+- One-Page-Scroll panels.
+- Notifications when invalid input, invalid certificate or encryption failures.
+
 
 Options
 ====
