@@ -1,0 +1,15 @@
+{
+  "name": "Veil",
+  "version": "0.0.0",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "components",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap-theme-cirrus": "~0.3.0"
+  }
+}

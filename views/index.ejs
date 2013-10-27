@@ -1,0 +1,100 @@
+<% layout('layouts/application') -%>
+    <!-- Script Tags -->
+<% script('javascripts/forge/debug.js') -%>
+    <% script('javascripts/forge/util.js') -%>
+<% script('javascripts/forge/log.js') -%>
+    <% script('javascripts/forge/md5.js') -%>
+    <% script('javascripts/forge/sha1.js') -%>
+    <% script('javascripts/forge/sha256.js') -%>
+<% script('javascripts/forge/hmac.js') -%>
+<% script('javascripts/forge/pbkdf2.js') -%>
+    <% script('javascripts/forge/aes.js') -%>
+    <% script('javascripts/forge/prng.js') -%>
+    <% script('javascripts/forge/random.js') -%>
+    <% script('javascripts/forge/jsbn.js') -%>
+    <% script('javascripts/forge/asn1.js') -%>
+    <% script('javascripts/forge/pem.js') -%>
+<% script('javascripts/forge/oids.js') -%>
+    <% script('javascripts/forge/rsa.js') -%>
+
+<% script('javascripts/forge/pbe.js') -%>
+<% script('javascripts/forge/x509.js') -%>
+<% script('javascripts/forge/pki.js') -%>
+<% script('javascripts/forge/tls.js') -%>
+<% script('javascripts/forge/aesCipherSuites.js') -%>
+<% script('javascripts/forge/common.js') -%>
+<link type="text/css" rel="stylesheet" media="all" href="/javascripts/forge/screen.css" />
+<style type="text/css">
+    .ready { color: inherit; background: inherit; }
+    .testing { color: black; background: yellow; }
+    .pass{ color: white; background: green; }
+    .fail{ color: white; background: red; }
+</style>
+
+<h1>I am the temsdfsdfsdfplate</h1>
+<% block('header', "<p>I'm in the header.</p>") -%>
+<% block('footer', "<p>I'm in the footer.</p>") -%>
+
+        <textarea id="private_key">
+
+        </textarea>
+        <button id="private_button">Console</button>
+
+
+<script type="text/javascript">
+
+    $(function(){
+        var pki = forge.pki;
+
+        $('#private_button').click(function(){
+            var pem = $('#private_key').text();
+            var privateKey = pki.privateKeyFromPem(pem);
+            console.log('private key', privateKey);
+
+        });
+
+    })
+
+
+</script>
+
+<div class="nav"><a href="index.html">Forge Tests</a> / Common</div>
+
+<div class="header">
+    <h1>Common Tests</h1>
+</div>
+
+<div class="content">
+
+    <fieldset class="section">
+        <ul>
+            <li>Test various Forge components.</li>
+            <li>See JavaScript console for more detailed output.</li>
+        </ul>
+    </fieldset>
+
+    <fieldset class="section">
+        <legend>Control</legend>
+        <button id="start">Start</button>
+        <button id="reset">Reset</button>
+        <br/>
+        <input id="scroll" type="checkbox" />Scroll Tests
+        <br/>
+        <button id="keygen">Generate RSA key pair</button>
+        <button id="certgen">Generate RSA certificate</button>
+        <input id="bits" value="1024"/>bits
+    </fieldset>
+
+    <fieldset class="section">
+        <legend>Progress</legend>
+        Status: <span id="status">?</span><br/>
+        Pass: <span id="pass">?</span>/<span id="total">?</span><br/>
+        Fail: <span id="fail">?</span>
+    </fieldset>
+
+    <fieldset class="section">
+        <legend>Tests</legend>
+        <div id="tests"></div>
+    </fieldset>
+
+</div>
