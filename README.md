@@ -3,6 +3,14 @@ Veil
 
 Angular Application that allows you to securely encrypt and retrieve your SSH keys from Dropbox storage. 
 
+What Is It / Why Do I Care
+====
+SSH keys are becoming very common. They are most often used to securely access servers, git repositories, storage and verify communication.
+The problem is that the best practice when using SSH is to use a unique key for each activity, and like passwords it can become complicated to manage all these SSH keys.
+The idea behind Veil is to create a secure credential manager for your SSH keys, not unlike what LastPass does for your passwords.
+However __unlike__ LastPass, the SSH keys will be encrypted on the client-side, so the unencrypted files can not be accessed by anyone, not even the Administrators of Veil.
+
+
 Ideas
 ====
 
@@ -26,7 +34,7 @@ Additional Features
 - Progress bar when decrypting and encrypting data.
 - One-Page-Scroll panels.
 - Notifications when invalid input, invalid certificate or encryption failures.
-
+- Download All using javascript zip file generator.
 
 Options
 ====

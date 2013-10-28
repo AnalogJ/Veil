@@ -1,0 +1,62 @@
+<div class="container">
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="list-group">
+                <a href="#" ng-click="clickBeginCreateMaster()" class="list-group-item" ng-class="{active: !loadKey}">
+                    <h4 class="list-group-item-heading">Create Master Key</h4>
+                    <p class="list-group-item-text">Create a new Master Key that will be used to encrypt and decrypt your SSH keys and passphrases.</p>
+                </a>
+                <a href="#" ng-click="clickBeginLoadMaster()" class="list-group-item" ng-class="{active: loadKey}">
+                    <h4 class="list-group-item-heading">Load Existing</h4>
+                    <p class="list-group-item-text">Load an existing Master Key file.</p>
+                </a>
+
+            </div>
+        </div>
+        <div class="col-lg-8">
+            <div class="panel panel-primary" id="panels" ng-show="!loadKey">
+                <div class="panel-heading">Create a new Master Key
+                </div>
+                <p class="panel-body">
+
+                </p>
+                <div class="panel-footer"><button ng-click="submitCreateMaster()" type="button" class="btn btn-xs btn-primary">Generate Master Key</button></div>
+            </div>
+            <div class="panel panel-primary" id="panels" ng-show="loadKey">
+                <div class="panel-heading">Load an Existing Key
+                </div>
+                <p class="panel-body">This is a panel</p>
+                <div class="panel-footer">This is a footer
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <hr ng-show="certificatePem" />
+    <div class="row" ng-show="certificatePem">
+
+        <div class="col-lg-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">Details
+                </div>
+                <div class="panel-body"></div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><strong>Passphrase:</strong> </li>
+                    <li class="list-group-item">Algorithm: RSA</li>
+                    <li class="list-group-item">Key Size: 2048</li>
+                </ul>
+                <div class="panel-footer">
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-8">
+            <div class="well well-large">
+                <textarea class="form-control" rows="3" ng-model="certificatePem"></textarea>
+            </div>
+        </div>
+    </div>
+
+
+</div>

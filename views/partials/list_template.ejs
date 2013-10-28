@@ -1,0 +1,67 @@
+<div class="container">
+    <div ng-hide="masterKeys.length" class="row">
+        <div class="col-lg-12">
+            <div class="alert alert-warning">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                <strong>No Master Key!</strong> No Master Key was found. You will need to <a href="/masterKey" class="alert-link">Create a Master Key </a> before you can encrypt your SSH keys.
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-primary" id="panels">
+                <div class="panel-heading">This is a header
+                </div>
+                <p class="panel-body">
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>Signature</th>
+                        <th>Description</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>10012</td>
+                        <td>Github.com Personal Private Key</td>
+                        <td><span class="label label-danger">Encrypted</span></td>
+                        <td><button type="button" class="btn btn-xs btn-primary">Details</button></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Lucille</td>
+                        <td>Do you like them?</td>
+                    </tr>
+                    <tr class="success">
+                        <td>3</td>
+                        <td>Success</td>
+                        <td></td>
+                    </tr>
+                    <tr class="danger">
+                        <td>4</td>
+                        <td>Danger</td>
+                        <td></td>
+                    </tr>
+                    <tr class="warning">
+                        <td>5</td>
+                        <td>Warning</td>
+                        <td></td>
+                    </tr>
+                    <tr class="active">
+                        <td>6</td>
+                        <td>Active</td>
+                        <td></td>
+                    </tr>
+                    </tbody>
+                </table>
+                </p>
+                <div class="panel-footer">This is a footer
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
