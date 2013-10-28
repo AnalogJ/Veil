@@ -37,10 +37,12 @@
     <div class="row" ng-show="certificatePem">
 
         <div class="col-lg-4">
-            <div class="panel panel-default">
+            <div class="panel panel-primary">
                 <div class="panel-heading">Details
                 </div>
-                <div class="panel-body"></div>
+                <div class="panel-body">
+                    Please make note of the Master Key Passphrase below. It is not stored, and will never be visible again.
+                </div>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item"><strong>Passphrase:</strong> </li>
                     <li class="list-group-item">Algorithm: RSA</li>
@@ -52,8 +54,16 @@
         </div>
 
         <div class="col-lg-8">
-            <div class="well well-large">
-                <textarea class="form-control" rows="3" ng-model="certificatePem"></textarea>
+            <div class="panel panel-primary">
+                <div class="panel-heading">Details
+                </div>
+                <div class="panel-body">
+                    Please download or copy the Master Key below. It is not stored, and will never be visible again.
+                </div>
+                <textarea class="form-control" rows="25" ng-model="certificatePem"></textarea>
+                <div class="panel-footer">
+
+                </div>
             </div>
         </div>
     </div>

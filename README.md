@@ -35,6 +35,12 @@ Additional Features
 - One-Page-Scroll panels.
 - Notifications when invalid input, invalid certificate or encryption failures.
 - Download All using javascript zip file generator.
+- Download certificates using [Blob.js](https://github.com/eligrey/Blob.js/blob/master/Blob.js)
+
+`var bb = new BlobBuilder();
+ bb.append((new XMLSerializer).serializeToString(document));
+ var blob = bb.getBlob("application/xhtml+xml;charset=" + document.characterSet);
+ saveAs(blob, "document.xhtml");`
 
 Options
 ====
