@@ -7,7 +7,7 @@
                     <p class="list-group-item-text">Create a new Master Key that will be used to encrypt and decrypt your SSH keys and passphrases.</p>
                 </a>
                 <a href="#" ng-click="clickBeginLoadMaster()" class="list-group-item" ng-class="{active: loadKey}">
-                    <h4 class="list-group-item-heading">Load Existing</h4>
+                    <h4 class="list-group-item-heading">Load Existing Master Key</h4>
                     <p class="list-group-item-text">Load an existing Master Key file.</p>
                 </a>
 
@@ -18,14 +18,30 @@
                 <div class="panel-heading">Create a new Master Key
                 </div>
                 <p class="panel-body">
-
+                    <form class="form-horizontal" _lpchecked="1">
+                        <div class="form-group">
+                            <label for="createMasterKeyPassphrase" class="col-lg-2 control-label">Passphrase</label>
+                            <div class="col-lg-8">
+                                <input type="text" class="form-control" id="createMasterKeyPassphrase" ng-model="createMasterKeyPassphrase" placeholder="Passphrase">
+                            </div>
+                        </div>
+                    </form>
                 </p>
                 <div class="panel-footer"><button ng-click="submitCreateMaster()" type="button" class="btn btn-xs btn-primary">Generate Master Key</button></div>
             </div>
             <div class="panel panel-primary" id="panels" ng-show="loadKey">
                 <div class="panel-heading">Load an Existing Key
                 </div>
-                <p class="panel-body">This is a panel</p>
+                <p class="panel-body">
+                <form class="form-horizontal" _lpchecked="1">
+                    <div class="form-group">
+                        <label for="loadMasterKeyPassphrase" class="col-lg-2 control-label">Email</label>
+                        <div class="col-lg-8">
+                            <input type="text" class="form-control" id="loadMasterKeyPassphrase" ng-model="loadMasterKeyPassphrase" placeholder="Email">
+                        </div>
+                    </div>
+                </form>
+                </p>
                 <div class="panel-footer">This is a footer
                 </div>
             </div>
@@ -33,8 +49,8 @@
 
     </div>
 
-    <hr ng-show="certificatePem" />
-    <div class="row" ng-show="certificatePem">
+    <hr ng-show="currentPrivatePemCert" />
+    <div class="row" ng-show="currentPrivatePemCert">
 
         <div class="col-lg-4">
             <div class="panel panel-primary">
@@ -55,14 +71,22 @@
 
         <div class="col-lg-8">
             <div class="panel panel-primary">
-                <div class="panel-heading">Details
+                <div class="panel-heading">Master Key
                 </div>
                 <div class="panel-body">
                     Please download or copy the Master Key below. It is not stored, and will never be visible again.
                 </div>
-                <textarea class="form-control" rows="25" ng-model="certificatePem"></textarea>
+                <textarea class="form-control" rows="15" ng-model="currentPrivatePemCert"></textarea>
                 <div class="panel-footer">
-
+                    <div class="btn-group">
+                        <button type="button" ng-click="exportPrivateKey()" class="btn btn-danger">Export Private Key</button>
+                        <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#" ng-click="exportPublicKey()">Export Public Key</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>

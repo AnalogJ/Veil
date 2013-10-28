@@ -86,13 +86,22 @@ angular.module('veilApp.controllers', ['ngProgress', 'recordWrapper'])
     })
     .controller('masterKeyCtrl', function ($scope, $location, dropstoreClient, ngProgress) {
         $scope.loadKey = false;
-        $scope.certificatePem = "" //Contains the loaded or created Certificate that the user MUST download.
+        $scope.currentPrivatePemCert = ""; //Contains the loaded or created Certificate that the user MUST download.
+        $scope.currentPublicPemCert = "";
+        $scope.currentPassphrase = "";      //This will Never be stored, for this is only for display purposes.
 
+        //Load Existing Master Key Related Methods.
+        $scope.loadMasterKeyPassphrase = "";
         $scope.clickBeginLoadMaster = function(){
             $scope.loadKey = true;
+            $scope.loadMasterKeyPassphrase = "";
         }
+
+        //Create New Master Key Related Methods.
+        $scope.createMasterKeyPassphrase = "";
         $scope.clickBeginCreateMaster = function(){
             $scope.loadKey = false;
+            $scope.createMasterKeyPassphrase = "";
         }
 
         $scope.submitCreateMaster = function(){
@@ -105,18 +114,47 @@ angular.module('veilApp.controllers', ['ngProgress', 'recordWrapper'])
             rsa.generateKeyPair({bits: 2048, e: 0x10001, workers: 2, workerScript:"/javascripts/forge/prime.worker.js"}, function(err, keypair) {
                 // keypair.privateKey, keypair.publicKey
                 ngProgress.complete();
-                // convert a Forge private key to PEM-format
-                var privatepem = forge.pki.privateKeyToPem(keypair.privateKey);
-                var publicpem = forge.pki.publicKeyToPem(keypair.publicKey);
-                $scope.certificatePem = privatepem;
-                console.log(privatepem);
+
+                // sign data with a private key and output DigestInfo DER-encoded bytes
+                var md = forge.md.sha1.create();
+                md.update('sign this', 'utf8');
+                var signature = keypair.privateKey.sign(md);
+                console.log('signature',signature)
+                // verify data with a public key
+                var verified = keypair.publicKey.verify(md.digest().bytes(), signature);
+
+                if(verified){
+                    //Generate the Certificates.
+                    // convert a Forge private key to PEM-format
+                    var privatepem = forge.pki.privateKeyToPem(keypair.privateKey);
+                    var publicpem = forge.pki.publicKeyToPem(keypair.publicKey);
+
+                    $scope.currentPrivatePemCert = privatepem;
+                    $scope.currentPublicPemCert = publicpem;
+                    console.log(privatepem);
+                }
+                else{
+                    //TODO: throws error here,
+                    throw "Could not verify RSA Keys"
+                }
+
             });
 
 
 
 
         }
+        $scope.exportPrivateKey = function(){
+            console.log("private key")
 
+            var blob = new Blob([$scope.currentPrivatePemCert], {type: "text/plain;charset=utf-8"});
+            saveAs(blob, "master.private.key");
+        }
+        $scope.exportPublicKey = function(){
+            console.log("public key")
+            var blob = new Blob([$scope.currentPublicPemCert], {type: "text/plain;charset=utf-8"});
+            saveAs(blob, "master.public.pem");
+        }
 
 
         var datastoreManager = dropstoreClient.getDatastoreManager()

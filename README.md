@@ -23,7 +23,6 @@ Ideas
 - Should be accessable as a single page offline application
 - Passphrases are never decrypted by default, they must be decrypted on demand.
 - Detect when the application has gone offline, and disable changing passphrases, only decryption.
-
 Additional Features
 ====
 
@@ -36,6 +35,7 @@ Additional Features
 - Notifications when invalid input, invalid certificate or encryption failures.
 - Download All using javascript zip file generator.
 - Download certificates using [Blob.js](https://github.com/eligrey/Blob.js/blob/master/Blob.js)
+- Use the notification api to message the user when a new credential has been added?
 
 `var bb = new BlobBuilder();
  bb.append((new XMLSerializer).serializeToString(document));
